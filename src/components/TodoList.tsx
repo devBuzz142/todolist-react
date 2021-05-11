@@ -26,8 +26,13 @@ type Item = {
 
 function TodoList(props: TodoListProps) {
     
-    const [todos, setTodos] = useState<Item[]>([]);
+    const test: Item = {
+        id: 0, text: "test", done: false, pinned: false,
+        removeTodo: (a: number) => {}, doneTodo: (a: number) => {}, pinnedTodo: (a: number) => {},
+    };
 
+    const [todos, setTodos] = useState<Item[]>([test]);
+    
     const createTodo = (newText: string) => {
         if (!todos) return;
 
@@ -37,6 +42,8 @@ function TodoList(props: TodoListProps) {
         };
 
         setTodos([todo, ...todos]);
+
+        console.log(newText);
     }
 
     const removeTodo = (id: number) => {
@@ -61,7 +68,8 @@ function TodoList(props: TodoListProps) {
             ...todo,
             pinned: (todo.id === id)? !todo.pinned : todo.pinned,
         })));
-    }
+    } 
+    
     
     return (
         <TodoListBlock>

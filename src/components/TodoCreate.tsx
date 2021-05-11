@@ -38,17 +38,23 @@ type TodoCreateProps = {
 function TodoCreate(props : TodoCreateProps): JSX.Element {
     const [inputs, setInputs] = useState<string>('');
 
+    // reference on calvin's. thx.
+    const onSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        props.createTodo(inputs);
+        setInputs('');
+    }
+
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        console.log(value);
         setInputs(value);
     };
 
     return (
         <InsertFormPositioner>
-            <InsertForm>
+            <InsertForm onSubmit={onSubmit}>
                 <Input placeholder="Enter Task" onChange={onChange}/>
-                <button onClick={() => props.createTodo(inputs)}>Enter</button>
+                <button>Enter</button>
             </InsertForm>
         </InsertFormPositioner>
     );
