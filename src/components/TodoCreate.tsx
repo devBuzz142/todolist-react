@@ -38,7 +38,6 @@ type TodoCreateProps = {
 function TodoCreate(props : TodoCreateProps): JSX.Element {
     const [inputs, setInputs] = useState<string>('');
 
-    // reference on calvin's. thx.
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         props.createTodo(inputs);
